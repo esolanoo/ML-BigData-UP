@@ -1,30 +1,9 @@
-<br>
-<center>
-<img src="https://reqlut2.s3.sa-east-1.amazonaws.com/reqlut-images/up/logo-original.png?v=55"
-        alt="UP"
-        style="display: block; margin: 0 auto"
-        width=70%
-        length=70% />
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br> </br>
 
-<h1 style="text-align: center;">What is SQL?</h1>
-<h2 style="text-align: center;">Report</h2>
-<h3 style="text-align: center;">Eduardo Solano Jaime</h3>
-<h3 style="text-align: center;">0213663</h3>
-<h3 style="text-align: center;">Especialidad en Ciencia de Datos</h3>
-<h3 style="text-align: center;">Universidad Panamericana Campus Guadalajara</h3>
+# What is SQL?
 
-</center>
+Eduardo Solano Jaime - 0213663
 
-<div style="page-break-after: always;"></div>
+23/02/24
 
 ## Introduction to SQL
 
