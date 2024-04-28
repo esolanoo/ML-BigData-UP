@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eror</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'myapp/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Input error!</h1>
+        <h3>Duplicated data or error in format</h3>
+        <br></br>
+        <a href="{% url 'home' %}" class="back-link">Back to Home</a>
+    </div>
+</body>
+</html>

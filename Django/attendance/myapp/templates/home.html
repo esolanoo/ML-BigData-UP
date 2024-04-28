@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tables</h1>
+
+    <a href="{% url 'view_student_data' %}"><button>Students</button></a>
+    <br><br>
+    
+    <a href="{% url 'view_class_data' %}"><button>Classes</button></a>
+    <br><br>
+
+    <a href="{% url 'view_question_data' %}"><button>Questions</button></a>
+    <br><br>
+    
+    <a href="{% url 'view_answer_data' %}"><button>Answers</button></a>
+    <br><br>
+    
+    <a href="{% url 'view_attendance_data' %}"><button>Attendances</button></a>
+    <br><br>
+</body>
+</html>

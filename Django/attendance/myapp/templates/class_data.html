@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Class Data</title>
+    <style>
+        /* Hidden form style */
+        .popup-form {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f9f9f9;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            border-radius: 5px;
+            width: 300px;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .popup-form h2 {
+            margin-top: 0;
+        }
+
+        .popup-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .popup-form input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .popup-form button {
+            padding: 8px 16px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .popup-form button:hover {
+            background-color: #45a049;
+        }
+
+        /* Table style */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Button style */
+        button {
+            padding: 8px 16px;
+            margin-top: 20px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005f6b;
+        }
+    </style>
+</head>
+<body>
+    <h1>Class Data</h1>
+
+    <!-- Button to add a class -->
+    <button onclick="togglePopup('popupForm')">Add Class</button>
+
+    <!-- class Data Table -->
+    <table border="1">
+        <tr>
+            <th>Class Number</th>
+            <th>Topic</th>
+            <th>Created at</th>
+        </tr>
+        {% for class in classes %}
+        <tr>
+            <td>{{ class.class_number }}</td>
+            <td>{{ class.topic }}</td>
+            <td>{{ class.created_at }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Popup form for adding a class -->
+    <div class="popup-form" id="popupForm">
+        <h2>Add Class Form</h2>
+        <form method="post" action="{% url 'add_class' %}">
+            {% csrf_token %}
+            <label for="class_number">Class number:</label>
+            <input type="text" id="class_number" name="class_number"><br><br>
+            <label for="topic">Topic:</label>
+            <input type="text" id="topic" name="topic"><br><br>
+            <label for="created_at">Created at:</label>
+            <input type="text" id="created_at" name="created_at"><br><br>
+            <button type="submit">Save</button>
+            <button type="button" onclick="togglePopup('popupForm')">Close</button>
+        </form>
+    </div>
+
+    <!-- Button to go back to home -->
+    <button onclick="goToHome()">Back to Home</button>
+
+    <!-- JavaScript to toggle the popup form and redirect to home -->
+    <script>
+        function togglePopup(popupId) {
+            const popupForm = document.getElementById(popupId);
+            popupForm.style.display = (popupForm.style.display === 'none' || popupForm.style.display === '') ? 'block' : 'none';
+        }
+
+        function goToHome() {
+            window.location.href = "{% url 'home' %}";
+        }
+
+        var now = new Date();
+
+        var options = { timeZone: 'America/Mexico_City' };
+
+    // Format the date and time to YYYY-MM-DD HH:MM:SS
+        var formattedDate = now.toLocaleString('sv-SE', {
+            ...options,
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+          }).replace(/\./g, '-');
+
+        // Set the value of the input field to the formatted date and time
+        document.getElementById("created_at").value = formattedDate;
+    </script>
+</body>
+</html>
