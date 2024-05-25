@@ -32,4 +32,6 @@ urlpatterns = [
     path('add_question/', views.add_question, name='add_question'),
     path('add_answer/', views.add_answer, name='add_answer'),
     path('add_attendance/', views.add_attendance, name='add_attendance'),
+    path('show_grades/', views.show_grades, name='show_grades'),
+    path('do_exam/', views.do_exam, name='do_exam'),
 ]

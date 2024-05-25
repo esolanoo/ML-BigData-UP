@@ -3,6 +3,7 @@ body {
     background-color: #f8f8f8;
     margin: 0;
     padding: 0;
+    overflow: auto;
 }
 
 .container {
@@ -57,3 +58,16 @@ input[type="text"], button {
     padding: 5px 10px;
     font-size: 14px;
 }
+
+.popup-form-container {
+    overflow: auto;
+    max-height: 100px; /* Adjust as needed */
+  }
+
+  .popup-form-container {
+display: flex;
+justify-content: space-between;
+}
+
+
+

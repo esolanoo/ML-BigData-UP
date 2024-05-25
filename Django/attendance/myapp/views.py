@@ -1,7 +1,16 @@
 from django.shortcuts import render
-from .models import Student, Class, Questions, Answer, Attendance
+from .models import Student, Class, Questions, Answer, Attendance, Quiz, Choices
 from .forms import StudentForm, ClassForm, QuestionsForm, AnswerForm, AttendanceForm
 from django.shortcuts import get_object_or_404
+
+
+global exam_questions 
+exam_questions = ["Which SQL statement is used to retrieve data from a database?", 
+                "What is the correct SQL statement to create a database named test_db?",
+                "Which of the following is a valid data type in MySQL?",
+                "What is the main purpose of an index in a database?",
+                "Which SQL keyword is used to combine rows from two or more tables, based on a related column between them?",
+                "Which SQL function is used to calculate the number of rows in a table?"]
 
 
 def main_page(request):
@@ -100,7 +109,37 @@ def add_attendance(request):
             model.student_id = class_instance
             model.save()
         return render(request, 'added.html')
+    
+def show_grades(request):
+    model = Quiz.objects.all()
+    students = Student.objects.all()
+    choices = Choices.objects.all()
+    questions = exam_questions
+    return render(request, 'show_grades.html', {'quizes': model,
+                                                'students': students,
+                                                'choices': choices,
+                                                'questions': questions})
 
+def do_exam(request):
+    if request.method == 'POST':
+        answers = [request.POST.get(question) for question in exam_questions]
+        student_id =request.POST.get('student_id')
+        class_instance = get_object_or_404(Student, id=student_id)
+        model = Quiz(student_id = class_instance)
+        model.question1=exam_questions[0]
+        model.question2=exam_questions[1]
+        model.question3=exam_questions[2]
+        model.question4=exam_questions[3]
+        model.question5=exam_questions[4]
+        model.question6=exam_questions[5]
+        model.answer1=answers[0] == 'True'
+        model.answer2=answers[1] == 'True'
+        model.answer3=answers[2] == 'True'
+        model.answer4=answers[3] == 'True'
+        model.answer5=answers[4] == 'True'
+        model.answer6=answers[5] == 'True'
+        model.save()
+        return render(request, 'added.html')
 
 
 

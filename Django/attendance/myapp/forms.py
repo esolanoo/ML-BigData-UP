@@ -1,5 +1,5 @@
 from django import forms
-from .models import Student, Class, Questions, Answer, Attendance
+from .models import Student, Class, Questions, Answer, Attendance, Quiz, Choices
 
 class StudentForm(forms.ModelForm):
     class Meta:
@@ -24,4 +24,14 @@ class AnswerForm(forms.ModelForm):
 class AttendanceForm(forms.ModelForm):
     class Meta:
         model = Attendance
+        fields = '__all__'
+        
+class QuizForm(forms.ModelForm):
+    class Meta:
+        model = Quiz
+        fields = '__all__'
+        
+class ChoicesForm(forms.ModelForm):
+    class Meta:
+        model = Choices
         fields = '__all__'

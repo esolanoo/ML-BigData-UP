@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Student Data</title>
+    <title>Attendance Data</title>
     <style>
         /* Hidden form style */
         .popup-form {
@@ -87,42 +87,52 @@
     </style>
 </head>
 <body>
-    <h1>Student Data</h1>
+    <h1>Exam</h1>
 
-    <!-- Button to add a student -->
-    <button onclick="togglePopup('popupForm')">Add Student</button>
+    <!-- Button to add a class -->
+    <button onclick="togglePopup('popupForm')">Do exam</button>
 
-    <!-- Student Data Table -->
+    <!-- class Data Table -->
     <table border="1">
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Last Names</th>
-            <th>Alias</th>
+            <th>Student</th>
+            <th>Grade</th>         
         </tr>
-        {% for student in students %}
+        {% for quiz in quizes %}
         <tr>
-            <td>{{ student.id }}</td>
-            <td>{{ student.name }}</td>
-            <td>{{ student.last_names }}</td>
-            <td>{{ student.alias }}</td>
+            <td>{{ quiz.student_id }}</td>
+            <td>{{ quiz }}</td>
         </tr>
         {% endfor %}
     </table>
 
-    <!-- Popup form for adding a student -->
-    <div class="popup-form" id="popupForm", style="overflow-y: scroll; height:500px;">
-        <h2>Add Student Form</h2>
-        <form method="post" action="{% url 'add_student' %}">
+    <!-- Popup form for adding a class -->
+    <div class="popup-form" id="popupForm" style="overflow-y: scroll; height:500px;">
+        <h2>Exam Form</h2>
+        <form method="post" action="{% url 'do_exam' %}">
             {% csrf_token %}
-            <label for="id">ID:</label>
-            <input type="text" id="id" name="id"><br><br>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name"><br><br>
-            <label for="last_names">Last Names:</label>
-            <input type="text" id="last_names" name="last_names"><br><br>
-            <label for="alias">Alias:</label>
-            <input type="text" id="alias" name="alias"><br><br>
+            <label for="student_id">Student:</label>
+            <select id="student_id" name="student_id">
+                {% for student in students %}
+                    <option value="{{ student.id }}">{{ student.id }} - {{ student.alias }}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <div class="quiz">
+                {% for question in questions %}
+                <div class="question">
+                    <p>{{ question }}</p>
+                    <div class="choices">
+                        {% for choice in choices %}
+                            {% if choice.question == question %}
+                                <label for="{{ question }}"><input type="radio" id="{{ question }}" name="{{question}}" value="{{ choice.correct }}">{{ choice.choice }}</label><br>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>                     
+            <br><br>
             <button type="submit">Save</button>
             <button type="button" onclick="togglePopup('popupForm')">Close</button>
         </form>
