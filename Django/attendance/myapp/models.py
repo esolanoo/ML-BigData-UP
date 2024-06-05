@@ -51,15 +51,22 @@ class Quiz(models.Model):
     question4 = models.CharField(max_length=255)
     question5 = models.CharField(max_length=255)
     question6 = models.CharField(max_length=255)
+    question7 = models.CharField(max_length=255)
+    question8 = models.CharField(max_length=255)
+    question9 = models.CharField(max_length=255)
     answer1 = models.BooleanField(default=False)
     answer2 = models.BooleanField(default=False)
     answer3 = models.BooleanField(default=False)
     answer4 = models.BooleanField(default=False)
     answer5 = models.BooleanField(default=False)
     answer6 = models.BooleanField(default=False)
+    answer7 = models.BooleanField(default=False)
+    answer8 = models.BooleanField(default=False)
+    answer9 = models.BooleanField(default=False)
+    open_question_answer = models.TextField(blank=True)
     
     def __str__(self):
-        return f'{[self.answer1, self.answer2, self.answer3, self.answer4, self.answer5, self.answer6].count(True)}/6'
+        return f'{[self.answer1, self.answer2, self.answer3, self.answer4, self.answer5, self.answer6].count(True)}/9'
     
 class Choices(models.Model):
     question = models.TextField()

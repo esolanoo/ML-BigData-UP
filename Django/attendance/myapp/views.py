@@ -10,7 +10,10 @@ exam_questions = ["Which SQL statement is used to retrieve data from a database?
                 "Which of the following is a valid data type in MySQL?",
                 "What is the main purpose of an index in a database?",
                 "Which SQL keyword is used to combine rows from two or more tables, based on a related column between them?",
-                "Which SQL function is used to calculate the number of rows in a table?"]
+                "Which SQL function is used to calculate the number of rows in a table?",
+                "Which of the following clauses is used to filter the results of a query in MySQL?",
+                "What does the SQL statement <SELECT COUNT(*) FROM employees WHERE department='Sales';> do?",
+                "Which MySQL function is used to return the current date and time?"]
 
 
 def main_page(request):
@@ -132,12 +135,19 @@ def do_exam(request):
         model.question4=exam_questions[3]
         model.question5=exam_questions[4]
         model.question6=exam_questions[5]
+        model.question6=exam_questions[6]
+        model.question6=exam_questions[7]
+        model.question6=exam_questions[8]
         model.answer1=answers[0] == 'True'
         model.answer2=answers[1] == 'True'
         model.answer3=answers[2] == 'True'
         model.answer4=answers[3] == 'True'
         model.answer5=answers[4] == 'True'
         model.answer6=answers[5] == 'True'
+        model.answer6=answers[6] == 'True'
+        model.answer6=answers[7] == 'True'
+        model.answer6=answers[8] == 'True'
+        model.open_question_answer = request.POST.get('open_question')
         model.save()
         return render(request, 'added.html')
 

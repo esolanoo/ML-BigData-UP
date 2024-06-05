@@ -96,18 +96,20 @@
     <table border="1">
         <tr>
             <th>Student</th>
-            <th>Grade</th>         
+            <th>Grade</th>  
+            <th>Open question answer</th>        
         </tr>
         {% for quiz in quizes %}
         <tr>
             <td>{{ quiz.student_id }}</td>
             <td>{{ quiz }}</td>
+            <td>{{ quiz.open_question_answer }}</td>
         </tr>
         {% endfor %}
     </table>
 
     <!-- Popup form for adding a class -->
-    <div class="popup-form" id="popupForm" style="overflow-y: scroll; height:500px;">
+    <div class="popup-form" id="popupForm" style="overflow-y: scroll; height:500px; width:400px">
         <h2>Exam Form</h2>
         <form method="post" action="{% url 'do_exam' %}">
             {% csrf_token %}
@@ -131,6 +133,10 @@
                     </div>
                 </div>
                 {% endfor %}
+                <div class="open-question">
+                    <p>Describe what a primary key is in MySQL and explain its purpose in a database table.</p>
+                    <textarea id="open_question" name="open_question" rows="4" cols="50"></textarea>
+                </div>
             </div>                     
             <br><br>
             <button type="submit">Save</button>

@@ -109,7 +109,7 @@
     </table>
 
     <!-- Popup form for adding a class -->
-    <div class="popup-form" id="popupForm" style="overflow-y: scroll; height:500px;">
+    <div class="popup-form" id="popupForm" style="overflow-y: scroll; height:500px; width:400px">
         <h2>Add Attendance Form</h2>
         <form method="post" action="{% url 'add_attendance' %}">
             {% csrf_token %}
